@@ -290,6 +290,7 @@ void draw() {
         x=320;
         y=80;
         soilMove=0;
+	playerHealth=2;
 			}
 		}else{
 
