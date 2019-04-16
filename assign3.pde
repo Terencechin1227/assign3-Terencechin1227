@@ -31,7 +31,7 @@ boolean rightPressed = false;
 boolean downMove=false,rightMove=false,leftMove=false,move=false;
 
 // For debug function; DO NOT edit or remove this!
-int playerHealth = 0;
+int playerHealth;
 float cameraOffsetY = 0;
 boolean debugMode = false;
 
@@ -62,7 +62,7 @@ void setup() {
   
   x=320;//groundhog
   y=80;
-  
+  playerHealth=2;
   gameState = GAME_START;
 }
 
@@ -250,9 +250,28 @@ void draw() {
           }
         }
 		// Health UI
-    for(playerHealth=0; playerHealth<5;playerHealth++){
-      image(life,10+playerHealth*70,10);
+    if(playerHealth==1){image(life,10,10);}
+    if(playerHealth==2){
+    for(int i=0; i<2;i++){
+      image(life,10+i*70,10);      
     }
+    }
+    if(playerHealth==3){
+    for(int i=0; i<3;i++){
+      image(life,10+i*70,10);      
+    }
+    }
+    if(playerHealth==4){
+    for(int i=0; i<4;i++){
+      image(life,10+i*70,10);      
+    }
+    }
+    if(playerHealth==5){
+    for(int i=0; i<5;i++){
+      image(life,10+i*70,10);      
+    }  
+    }
+    if(playerHealth>5){playerHealth=5;}
 		break;
 
 		case GAME_OVER: // Gameover Screen
