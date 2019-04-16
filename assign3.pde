@@ -22,6 +22,7 @@ int groundhogLeftX=1000,groundhogLeftY=-1000;
 int groundhogRightX=1000,groundhogRightY=-1000;
 int distance;
 int soilMove=0;
+int f;
 
 final int stoneCount=8;
 
@@ -31,7 +32,7 @@ boolean rightPressed = false;
 boolean downMove=false,rightMove=false,leftMove=false,move=false;
 
 // For debug function; DO NOT edit or remove this!
-int playerHealth;
+int playerHealth = 0;
 float cameraOffsetY = 0;
 boolean debugMode = false;
 
@@ -118,97 +119,138 @@ void draw() {
 		fill(124, 204, 25);
 		noStroke();
     rectMode(CORNERS);
-		rect(0, 160 - GRASS_HEIGHT+soilMove, width, 160-GRASS_HEIGHT+15+soilMove);
+		rect(0, 160 - GRASS_HEIGHT-soilMove, width, 160-GRASS_HEIGHT+15-soilMove);
 
 		// Soil - REPLACE THIS PART WITH YOUR LOOP CODE!
     for(int i=0; i<8;i++){
       for(int j=0;j<4;j++){
-        image(soil0,80*i,160+80*j+soilMove);
+        image(soil0,80*i,160+80*j-soilMove);
       }
     }
     for(int i=0; i<8;i++){
       for(int j=4;j<8;j++){
-        image(soil1,80*i,160+80*j+soilMove);
+        image(soil1,80*i,160+80*j-soilMove);
       }
     }
     for(int i=0; i<8;i++){
       for(int j=8;j<12;j++){
-        image(soil2,80*i,160+80*j+soilMove);
+        image(soil2,80*i,160+80*j-soilMove);
       }
     }
     for(int i=0; i<8;i++){
       for(int j=12;j<16;j++){
-        image(soil3,80*i,160+80*j+soilMove);
+        image(soil3,80*i,160+80*j-soilMove);
       }
     } 
     for(int i=0; i<8;i++){
       for(int j=16;j<20;j++){
-        image(soil4,80*i,160+80*j+soilMove);
+        image(soil4,80*i,160+80*j-soilMove);
       }
     }    
     for(int i=0; i<8;i++){
       for(int j=20;j<24;j++){
-        image(soil5,80*i,160+80*j+soilMove);
+        image(soil5,80*i,160+80*j-soilMove);
       }
     }
 
     //stone
     for(int i=0;i<stoneCount;i++){
-      image(stone1,80*i,160+80*i+soilMove);
+      image(stone1,80*i,160+80*i-soilMove);
     }
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==5||i==6){image(stone1,80*i,800+soilMove);}}
+      if(i==1||i==2||i==5||i==6){image(stone1,80*i,800-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1040+soilMove);}}
+      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1040-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1120+soilMove);}}
+      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1120-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1360+soilMove);}}
+      if(i==1||i==2||i==5||i==6){image(stone1,80*i,1360-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==3||i==4||i==7){image(stone1,80*i,880+soilMove);}}
+      if(i==0||i==3||i==4||i==7){image(stone1,80*i,880-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==3||i==4||i==7){image(stone1,80*i,960+soilMove);}}
+      if(i==0||i==3||i==4||i==7){image(stone1,80*i,960-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==3||i==4||i==7){image(stone1,80*i,1200+soilMove);}}
+      if(i==0||i==3||i==4||i==7){image(stone1,80*i,1200-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==3||i==4||i==7){image(stone1,80*i,1280+soilMove);}}      
+      if(i==0||i==3||i==4||i==7){image(stone1,80*i,1280-soilMove);}}      
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1440+soilMove);}}       
+      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1440-soilMove);}}       
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1680+soilMove);}}    
+      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1680-soilMove);}}    
     for(int i=0;i<stoneCount;i++){
-      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1920+soilMove);}}        
+      if(i==1||i==2||i==4||i==5||i==7){image(stone1,80*i,1920-soilMove);}}        
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,1520+soilMove);}}
+      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,1520-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,1760+soilMove);}}
+      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,1760-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,2000+soilMove);}}
+      if(i==0||i==1||i==3||i==4||i==6||i==7){image(stone1,80*i,2000-soilMove);}}
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==2||i==3||i==5||i==6){image(stone1,80*i,1600+soilMove);}}    
+      if(i==0||i==2||i==3||i==5||i==6){image(stone1,80*i,1600-soilMove);}}    
     for(int i=0;i<stoneCount;i++){
-      if(i==0||i==2||i==3||i==5||i==6){image(stone1,80*i,1840+soilMove);}}   
+      if(i==0||i==2||i==3||i==5||i==6){image(stone1,80*i,1840-soilMove);}}   
       
     for(int i=0;i<3;i++){
-      image(stone2,80*(-i+2),1440+80*i+soilMove);}
+      image(stone2,80*(-i+2),1440+80*i-soilMove);}
     for(int i=0;i<6;i++){
-      image(stone2,80*(-i+5),1440+80*i+soilMove);}
+      image(stone2,80*(-i+5),1440+80*i-soilMove);}
     for(int i=0;i<7;i++){
-      image(stone2,80*(-i+7),1520+80*i+soilMove);}
+      image(stone2,80*(-i+7),1520+80*i-soilMove);}
     for(int i=0;i<4;i++){
-      image(stone2,80*(-i+7),1760+80*i+soilMove);}
+      image(stone2,80*(-i+7),1760+80*i-soilMove);}
     for(int i=0;i<1;i++){
-      image(stone2,80*(-i+7),2000+80*i+soilMove);}      
+      image(stone2,80*(-i+7),2000+80*i-soilMove);}      
       
 		// Player
     image(groundhogIdle,x,y);
     image(groundhogDown,groundhogDownX,groundhogDownY);//groundhog
     image(groundhogLeft,groundhogLeftX,groundhogLeftY);
     image(groundhogRight,groundhogRightX,groundhogRightY);   
-    
-    if(move){
-        if(downPressed){   
-          if(soilMove<=-1600){
+    if(f<20){
+      if(move){
+          if(downPressed){   
+            distance+=5;
+            soilMove+=5;
+            if(distance==80){
+              move = false;
+              y = groundhogDownY;
+              x = groundhogDownX;
+              groundhogDownX = 1000;
+              distance = 0;
+              f++;
+              downPressed = false;
+            }        
+           } 
+           if(leftPressed){
+            groundhogLeftX-=5;
+            groundhogLeftX=max(groundhogLeftX,0);
+            distance+=5;
+            if(distance==80){
+              move = false;
+              y = groundhogLeftY;
+              x= groundhogLeftX;
+              groundhogLeftX = 1000;
+              distance = 0;
+              leftPressed = false;
+            }    
+           }
+            if(rightPressed){
+              groundhogRightX+=5;
+              groundhogRightX=min(groundhogRightX,560);
+              distance+=5;
+              if(distance==80){
+                move = false;
+                y = groundhogRightY;
+                x = groundhogRightX;
+                groundhogRightX = 1000;
+                distance = 0;
+                rightPressed=false;
+              }
+            }
+          }
+    }else{
+      if(move){
+      if(downPressed){        
           groundhogDownY+=5;
           groundhogDownY=min(groundhogDownY,400);
           distance+=5;
@@ -220,9 +262,8 @@ void draw() {
             distance = 0;
             downPressed = false;
           }        
-         } 
-        }
-         if(leftPressed){
+         }
+      if(leftPressed){
           groundhogLeftX-=5;
           groundhogLeftX=max(groundhogLeftX,0);
           distance+=5;
@@ -235,13 +276,13 @@ void draw() {
             leftPressed = false;
           }    
          }
-          if(rightPressed){
+       if(rightPressed){
             groundhogRightX+=5;
             groundhogRightX=min(groundhogRightX,560);
             distance+=5;
             if(distance==80){
               move = false;
-              y = groundhogRightY;
+              y= groundhogRightY;
               x = groundhogRightX;
               groundhogRightX = 1000;
               distance = 0;
@@ -249,8 +290,9 @@ void draw() {
             }
           }
         }
+     }
 		// Health UI
-    if(playerHealth==1){image(life,10,10);}
+   if(playerHealth==1){image(life,10,10);}
     if(playerHealth==2){
     for(int i=0; i<2;i++){
       image(life,10+i*70,10);      
@@ -272,7 +314,8 @@ void draw() {
     }  
     }
     if(playerHealth>5){playerHealth=5;}
-		break;
+    break;
+
 
 		case GAME_OVER: // Gameover Screen
 		image(gameover, 0, 0);
@@ -290,7 +333,8 @@ void draw() {
         x=320;
         y=80;
         soilMove=0;
-	playerHealth=2;
+        f=0;
+        playerHealth=2;
 			}
 		}else{
 
@@ -318,13 +362,6 @@ if(key==CODED){
           x=1000;
           downPressed=true;
           move = true;
-          soilMove-=80;
-          if(soilMove<=-1600){
-          soilMove=-1600;
-          groundhogDownY+=5;
-          groundhogDownY=min(groundhogDownY,400);
-          distance+=5;
-          }
         }
       break;
       case RIGHT:
@@ -345,8 +382,9 @@ if(key==CODED){
           move = true;
         }
       break;
-    }
+    
   }
+}
 	// DO NOT REMOVE OR EDIT THE FOLLOWING SWITCH/CASES
     switch(key){
       case 'w':
@@ -367,19 +405,4 @@ if(key==CODED){
       if(playerHealth < 5) playerHealth ++;
       break;
     }
-}
-void keyReleased() {
-    if (key == CODED) {
-      switch(keyCode){
-        case DOWN:
-        if(soilMove>-1600){
-        move = false;
-        y = groundhogDownY;
-        x = groundhogDownX;
-        groundhogDownX = 1000;
-        distance = 0;
-        downPressed = false;
-      }
-    }
-  }
 }
